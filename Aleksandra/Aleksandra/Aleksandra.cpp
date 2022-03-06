@@ -8,6 +8,7 @@
 using namespace std;
 
 class Hero {
+public:
     // Поля = Переменная-член
     string name;
     int hp;
@@ -17,32 +18,47 @@ class Hero {
 
     bool isAlive() {
         if (hp > 0) {
-            cout << "I am alive!" << endl;
+            cout << "\n I am alive!" << endl;
             return true;
         }
+        return false;
+    }
+    
+    void Kick(Hero* enemy) {
+        enemy->hp -= 35;
+
     }
 };
 
-void createHero(string path) {
+Hero* createHero(string path) {
+    Hero* player = new Hero;
  ifstream file(path, fstream::in);
-    string name;
-    int hp;
-    int attack;
-
-    file >> name >> hp >> attack;
     
-    cout << "\n Name: " << name;
-    cout << "\n HP: " << hp;
-    cout << "\n Attack: " << attack;
-    file.close();
 
+    file >> player->name >>player->hp >>player->attack;
+    
+    cout << "\n Name: " << player->name;
+    cout << "\n HP: " << player->hp;
+    cout << "\n Attack: " << player->attack;
+    file.close();
+    return player;
 }
 
 int main()
 {
-    createHero("player1.txt");
-    createHero("player2.txt");
+    Hero* player1 = createHero("player1.txt");
+    Hero* player2 = createHero("player2.txt");
 
+    player1->isAlive();
+    player2->isAlive();
+
+    while (player2->isAlive()) {
+        player1->Kick(player2);
+    }
+
+
+    player1->isAlive();
+    player2->isAlive();
 
    
 
