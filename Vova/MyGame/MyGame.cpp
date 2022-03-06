@@ -14,10 +14,8 @@ public:
     int attack;
 
     // Методы = функция-член
-
     bool isAlive() {
         if (hp > 0) {
-            cout << endl << name << " is alive" << endl;
             return true;
         }
 
@@ -25,8 +23,16 @@ public:
         return false;
     }
 
+    void getDamage(int dmg) {
+        hp -= dmg;
+        if (hp <= 0) {
+            cout << "I`am died" << endl;
+        }
+    }
+
     void Kick(Hero* enemy) {
-        enemy->hp -= 30;
+        if (!isAlive()) return;
+        enemy->getDamage(attack);
     }
 
 };
@@ -41,9 +47,26 @@ Hero* createHero(string path) {
     file >> newPlayer->name >> newPlayer->hp >> newPlayer->attack;
     cout << "\n Name: " << newPlayer->name;
     cout << "\n HP: " << newPlayer->hp;
-    cout << "\n Attack: " << newPlayer->attack;
+    cout << "\n Attack: " << newPlayer->attack<< endl;
     file.close();
     return newPlayer;
+}
+
+string Menu(string cmd) {
+    string newCMD = "";
+    if (cmd == "main") {
+        cout << endl << "1. Select hero";
+        cout << endl << "x. Exit" << endl;
+        cin >> newCMD;
+        if (newCMD == "1") return "selectHero";
+        if (newCMD == "x") return "exit";
+    }
+    if (cmd == "selectHero") {
+        cout << endl << "1. Player1";
+        cout << endl << "2. Player2" << endl;
+        cin >> newCMD;
+    }
+
 }
 
 int main()
@@ -52,16 +75,10 @@ int main()
     Hero* player1 = createHero("player1.txt");
     Hero* player2 = createHero("player2.txt");
 
-    player1->isAlive();
-    player2->isAlive();
-
-    player1->Kick(player2);
-    player1->Kick(player2);
+    
     player1->Kick(player2);
 
-    player1->isAlive();
-    player2->isAlive();
-   
+    cout << endl << endl;
     system("pause");
 
 }
