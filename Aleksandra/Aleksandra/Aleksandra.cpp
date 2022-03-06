@@ -18,17 +18,27 @@ public:
 
     bool isAlive() {
         if (hp > 0) {
-            cout << "\n I am alive!" << endl;
             return true;
         }
+        cout << "\n I AM UNDER AVADA KEDAVRA!" << endl;
         return false;
     }
-    
+
+    void getDamage(int dmg) {
+        hp -= dmg;
+        if (hp <= 0) {
+            cout << "\n I am FIRE!!! I AM DEATH!!!" << endl;
+        }
+    }
+
     void Kick(Hero* enemy) {
-        enemy->hp -= 35;
+        if (!isAlive()) return;
+        enemy->getDamage(attack);
 
     }
-};
+
+    
+ };
 
 Hero* createHero(string path) {
     Hero* player = new Hero;
@@ -42,6 +52,24 @@ Hero* createHero(string path) {
     cout << "\n Attack: " << player->attack;
     file.close();
     return player;
+}
+
+string Menu(string cmd) {
+        string newCMD="";
+    if (cmd == "main") {
+        cout << endl << "1.Select hero";
+        cout << endl << "x.Exit" << endl;
+
+        cin >> newCMD;
+        if (newCMD == "1") return "selectHero";
+        if (newCMD == "x") return "exit";
+     }
+
+    if (cmd == "selectHero") {
+        cout << endl << "1.Player1";
+        cout << endl << "2.Player2" << endl;
+        cin >> newCMD;
+    }
 }
 
 int main()
