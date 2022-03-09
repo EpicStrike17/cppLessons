@@ -8,30 +8,57 @@ Hero::Hero() {}
 
 Hero::Hero(std::string path){
 ifstream file(path, fstream::in);
+string parName = "";
+	do {
+		file >> parName;
+		if (parName == "name") {
+			file >> name;
+		}
+		else if (parName == "hp") {
+			file >> hp;
+		}
+		else if (parName == "atk") {
+			file >> atk;
+		}
+		else if (parName == "agi") {
+			file >> agi;
+		}
+		else if (parName == "arm") {
+			file >> arm;
+		}
+	} while (!file.eof());
 
-	file >> name >> hp >> atk >> arm;
+	file >> name >> hp >> atk >> arm >> agi;
+	agiChance = ((float)agi / 1000) * 0.75;
+	if (agiChance > 0.75) agiChance = 0.75;
+	armPct = 0.75 / 1000 * arm;
 	Stats();
 	file.close();
 }
 
 void Hero::Kick(Hero* enemy) {
-	cout << name << " kick " << enemy->name << ": " << atk << "\n";
+	cout << endl << name << " kick " << enemy->name << ": " << atk << "\n";
 	enemy->getDamage(atk);
 }
 void Hero::Stats() {
 	cout << "\n Name: " << name;
 	cout << "\n HP: " << hp;
 	cout << "\n ATK: " << atk;
-	cout << "\n ARM: " << arm  <<" ("<< (0.75* arm/1000) <<")" << endl;
+	cout << "\n AGI: " << agi << " (" << agiChance << ")" << endl;
+	cout << "\n ARM: " << arm  <<" ("<< armPct <<")" << endl;
 }
 
 void Hero::getDamage(int dmg) {
-	float armPct = 0.75 / 1000 * arm;
-
-	hp -= dmg - dmg*armPct;
+	if (agiChance*1000 > (rand() % 1000)) {
+		cout << name << " успешно уклонился от атаки " << name;
+		return;
+	}
+	
+	hp -= dmg - dmg * armPct;
 	if (hp <= 0) {
 		cout << name << " died.";
 	}
+	
 }
 
 string Menu(string type) {

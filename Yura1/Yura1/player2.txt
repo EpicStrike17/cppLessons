@@ -1,4 +1,5 @@
-Bonchman
-1000
-100
-85
+name Bonchman
+hp 1000
+atk 100
+agi 400
+arm 85
