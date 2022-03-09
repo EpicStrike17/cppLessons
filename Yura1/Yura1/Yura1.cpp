@@ -50,7 +50,7 @@ void Hero::Stats() {
 
 void Hero::getDamage(int dmg) {
 	if (agiChance*1000 > (rand() % 1000)) {
-		cout << name << " успешно уклонился от атаки " << name;
+		cout << name << " успешно уклонился от атаки ";
 		return;
 	}
 	
