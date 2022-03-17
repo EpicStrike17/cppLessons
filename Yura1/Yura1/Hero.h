@@ -1,26 +1,14 @@
 #pragma once
-#include "Utilities.h"
-
-class Hero {
+#include "Creature.h"
+class Hero : public Creature
+{
 public:
-	// поле  = переменная-член
-	string name = "";
-	int hp = 0;
-	int atk = 0;
-	int agi = 0;
-	float agiChance = 0;
-	int arm = 0;	// 1000 брони = сниж. урона на 75%
-	float armPct = 0;
-	// конструкторы
-	Hero(); // конструктор по умолчанию
+	
+	Hero();
+	~Hero();
 	Hero(std::string path);
-	// метод = функция-член
-	void Kick(Hero* enemy);
-	void Stats();
-	void getDamage(int dmg);
-
+	Hero(int playerId);
+	void setArmor(int ar);
+	void DoAction();
 };
 
-Hero* player1;
-Hero* player2;
-Hero* selectedHero;

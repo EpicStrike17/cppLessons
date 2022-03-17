@@ -2,64 +2,14 @@
 //
 #include "Utilities.h"
 #include "Hero.h"
+#include "ScreenController.h"
 
 
-Hero::Hero() {}
 
-Hero::Hero(std::string path){
-ifstream file(path, fstream::in);
-string parName = "";
-	do {
-		file >> parName;
-		if (parName == "name") {
-			file >> name;
-		}
-		else if (parName == "hp") {
-			file >> hp;
-		}
-		else if (parName == "atk") {
-			file >> atk;
-		}
-		else if (parName == "agi") {
-			file >> agi;
-		}
-		else if (parName == "arm") {
-			file >> arm;
-		}
-	} while (!file.eof());
-
-	file >> name >> hp >> atk >> arm >> agi;
-	agiChance = ((float)agi / 1000) * 0.75;
-	if (agiChance > 0.75) agiChance = 0.75;
-	armPct = 0.75 / 1000 * arm;
-	Stats();
-	file.close();
-}
-
-void Hero::Kick(Hero* enemy) {
-	cout << endl << name << " kick " << enemy->name << ": " << atk << "\n";
-	enemy->getDamage(atk);
-}
-void Hero::Stats() {
-	cout << "\n Name: " << name;
-	cout << "\n HP: " << hp;
-	cout << "\n ATK: " << atk;
-	cout << "\n AGI: " << agi << " (" << agiChance << ")" << endl;
-	cout << "\n ARM: " << arm  <<" ("<< armPct <<")" << endl;
-}
-
-void Hero::getDamage(int dmg) {
-	if (agiChance*1000 > (rand() % 1000)) {
-		cout << name << " успешно уклонился от атаки ";
-		return;
-	}
-	
-	hp -= dmg - dmg * armPct;
-	if (hp <= 0) {
-		cout << name << " died.";
-	}
-	
-}
+Creature* player1;
+Creature* player2;
+Creature* selectedHero;
+int gameScore = 0;
 
 string Menu(string type) {
 
@@ -102,17 +52,52 @@ string Menu(string type) {
 		}
 }
 
+
+
+void pseudoMain() {
+
+	Hero* her = new Hero(1);
+
+	//her->step(Direction::UP, 3);
+	//her->DoAction();
+	
+	her->Kick();
+
+	delete her;
+
+}
+
 int main()
 {
 
 	setlocale(LC_ALL, "Russian");
 	gameScore = 0;
-	player1 = new Hero("player1.txt");
-	player2 = new Hero("player2.txt");
+	for(int i=0;i<40;i++)
+	cout << "wet";
+
+
+	ScreenController screen;
+	screen.fill('#');
+	screen.draw();
+	system("pause");
+	
+	Hero* dick = new Hero("player1.txt");
+	screen.add(dick->pic,100,13);
+	screen.draw();
+
+
+	pseudoMain();
+	
+
+
+	/*
+	player1 = new Creature("player1.txt");
+	player2 = new Creature("player2.txt");
 	string nextMenu = Menu("main");
 	while (nextMenu != "exit") {
 		nextMenu= Menu(nextMenu);
 	}
+	*/
 	
 	system("pause");
 }

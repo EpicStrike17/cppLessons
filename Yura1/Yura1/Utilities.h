@@ -2,6 +2,18 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <assert.h>
+#include <string>
+#include <vector>
+
+#include <stdio.h>
 using namespace std;
-int gameScore = 0;
+
+enum class Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	DEEP
+};
 
