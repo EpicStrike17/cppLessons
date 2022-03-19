@@ -80,10 +80,10 @@ void Creature::step(Direction dir, int speed)
 {
 	switch (dir) {
 		case Direction::UP: 
-			y += speed; 
+			y -= speed; 
 			break;
 		case Direction::DOWN: 
-			y -= speed; 
+			y += speed; 
 			break;
 		case Direction::LEFT: 
 			x -= speed; 
@@ -95,6 +95,12 @@ void Creature::step(Direction dir, int speed)
 			cout<< "Wrong Direction"<<endl;
 	}
 	
+}
+
+void Creature::setXY(int x, int y)
+{
+	this->x = x;
+	this->y = y;
 }
 
 

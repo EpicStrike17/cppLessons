@@ -20,7 +20,7 @@ void ScreenController::draw()
 
 void ScreenController::fill(char symbol)
 {
-	wstring str = std::basic_string<wchar_t>();
+	string str = "";
 	for (int i = 0; i < Xsize; i++) {
 		str += symbol;
 	}
@@ -28,12 +28,28 @@ void ScreenController::fill(char symbol)
 
 }
 
-void ScreenController::add(vector<wstring> *pic, int x, int y){
-	if(pic)
+void ScreenController::add(vector<string> *pic, int x, int y){
+
+	if (!pic) return;
+	if (x < 0 || y < 0 || x + pic[0].size() > Xsize || y + pic->size() > Ysize) {
+		return;
+	}
 	for (int Yoffset = 0; Yoffset < pic->size(); Yoffset++) {
 		string newStr = (*pic)[Yoffset];
 		for (int Xoffset = 0; Xoffset < newStr.size(); Xoffset++) {
 			_scr[y+ Yoffset][x + Xoffset] = newStr[Xoffset];
 		}
 	}
+}
+
+// Ќарисовать всех существ (мобов и игроков) на кадре
+void ScreenController::drawAll()
+{
+	fill(' ');
+	for(auto elem : h) { 
+		add(elem->pic, elem->x, elem->y);
+	}
+
+	draw();
+
 }

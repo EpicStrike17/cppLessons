@@ -7,7 +7,6 @@ public:
 	Hero();
 	~Hero();
 	Hero(std::string path);
-	Hero(int playerId);
 	void setArmor(int ar);
 	void DoAction();
 };

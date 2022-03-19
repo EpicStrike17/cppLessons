@@ -1,5 +1,7 @@
 #pragma once
 #include "Utilities.h"
+#include "Hero.h"
+#include "Npc.h"
 
 #ifndef __TERM_EXAMPLE__
 #define __TERM_EXAMPLE__
@@ -53,9 +55,14 @@ public:
 	ScreenController();
 	void draw();
 	void fill(char symbol =' ');
-	void add(vector<wstring>* pic, int x, int y);
+	void add(vector<string>* pic, int x, int y);
+	void drawAll();
 	int Xsize = 290;
 	int Ysize = 60;
-	vector<wstring> _scr;
+	vector<string> _scr;
+
+
+	vector<Hero*> h;
+//	Npc* e1;
 };
 

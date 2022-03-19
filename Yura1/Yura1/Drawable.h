@@ -4,7 +4,7 @@
 class Drawable
 {
 public:
-	vector<wstring> *pic;
+	vector<string> *pic;
 
 
 	//*******//

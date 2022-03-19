@@ -3,6 +3,7 @@
 #include "Utilities.h"
 #include "Hero.h"
 #include "ScreenController.h"
+#include "Npc.h"
 
 
 
@@ -54,19 +55,6 @@ string Menu(string type) {
 
 
 
-void pseudoMain() {
-
-	Hero* her = new Hero(1);
-
-	//her->step(Direction::UP, 3);
-	//her->DoAction();
-	
-	her->Kick();
-
-	delete her;
-
-}
-
 int main()
 {
 
@@ -76,17 +64,48 @@ int main()
 	cout << "wet";
 
 
-	ScreenController screen;
-	screen.fill('#');
-	screen.draw();
+	ScreenController scene;
+	scene.fill('#');
+	scene.draw();
 	system("pause");
 	
-	Hero* dick = new Hero("player1.txt");
-	screen.add(dick->pic,100,13);
-	screen.draw();
+	Hero* h1 = new Hero("player1.txt");
+	Hero* h2 = new Hero("player2.txt");
+	Npc* e1 = new Npc("Mob1.txt");
+
+	scene.h.push_back(h1);
+	scene.h.push_back(h2);
+	
+	
+
+	h1->setXY(50, 10);
+	h2->setXY(260, 30);
+	e1->setXY(11, 15);
+
+	scene.drawAll();
+	system("pause");
+
+	h1->setXY(140, 10);
+	h2->setXY(280, 30);
+	e1->setXY(100, 20);
+	scene.drawAll();
+	system("pause");
 
 
-	pseudoMain();
+	h2->step(Direction::DOWN, 5);
+	scene.drawAll();
+	system("pause");
+	h2->step(Direction::DOWN, 5);
+	scene.drawAll();
+	system("pause");
+	h2->step(Direction::LEFT, 15);
+	scene.drawAll();
+	system("pause");
+	h2->step(Direction::DOWN, 5);
+	scene.drawAll();
+	system("pause");
+
+
 	
 
 

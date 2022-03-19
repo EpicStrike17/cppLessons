@@ -2,23 +2,15 @@
 
 Hero::Hero() {};
 Hero::~Hero() {
-	//cout << "Hero destructor()"<< endl;
 }
 
 Hero::Hero(std::string path) :Creature(path)
 {
-	//cout << " Hero constructor(" << path << ")" << endl;
-	pic = new vector<wstring>({ 
-		" ☺ ",
-		"╚╬╝",
-		"╔═╗"
+	pic = new vector<string>({ 
+		" 0 ",	//	" ☺ ",
+		" T ",	// "╚╬╝",
+		" LL"	// "╔═╗"
 	});
-}
-
-Hero::Hero(int playerId) : Creature("player"+to_string(playerId)+".txt")
-{
-
-	//cout << " Hero constructor(ID: " << playerId << ")" << endl;
 }
 
 void Hero::setArmor(int ar) {
