@@ -7,5 +7,7 @@ public:
 	Npc(string path);
 	bool findTarget();
 
+	void DoAction();
+
 };
 

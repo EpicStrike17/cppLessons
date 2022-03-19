@@ -6,16 +6,17 @@ ScreenController::ScreenController()
 }
 
 void ScreenController::draw()
-{
-	system("cls");
-	for (int y = 0;y < Ysize;y++) {
-			cout << _scr[y] << endl;
-	}
+{	
 
-	for (int x = 0; x < Xsize; x++) {
-		cout << "_";
-	}
-	cout << endl;
+	system("cls");
+		std::string Frame = "";
+		for (auto fnya : _scr) {
+			Frame += fnya + '\n';
+		}
+		for (int x = 0; x < Xsize; x++) {
+			Frame += "_";
+		}
+		cout << Frame<< endl;
 }
 
 void ScreenController::fill(char symbol)
@@ -46,8 +47,8 @@ void ScreenController::add(vector<string> *pic, int x, int y){
 void ScreenController::drawAll()
 {
 	fill(' ');
-	for(auto elem : h) { 
-		add(elem->pic, elem->x, elem->y);
+	for(auto obj : objects) {
+		add(obj->pic, obj->x, obj->y);
 	}
 
 	draw();

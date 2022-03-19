@@ -27,7 +27,7 @@ public:
 	void Kick(Creature* enemy);
 	void Stats();
 	void getDamage(int dmg);
-	void DoAction();
+	virtual void DoAction() = 0;
 	void step(Direction dir,int speed);
 	void setXY(int x, int y);
 

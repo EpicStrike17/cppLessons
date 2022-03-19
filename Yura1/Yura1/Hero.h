@@ -9,5 +9,9 @@ public:
 	Hero(std::string path);
 	void setArmor(int ar);
 	void DoAction();
+
+	void step(int speed);
+
+	Direction curDir;
 };
 

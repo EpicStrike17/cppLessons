@@ -62,7 +62,7 @@ public:
 	vector<string> _scr;
 
 
-	vector<Hero*> h;
+	vector<Creature*> objects;
 //	Npc* e1;
 };
 

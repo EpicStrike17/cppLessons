@@ -69,41 +69,29 @@ int main()
 	scene.draw();
 	system("pause");
 	
-	Hero* h1 = new Hero("player1.txt");
-	Hero* h2 = new Hero("player2.txt");
-	Npc* e1 = new Npc("Mob1.txt");
+	Creature* h1 = new Hero("player1.txt");
+	Creature* h2 = new Npc("player2.txt");
+	Creature* e1 = new Npc("Mob1.txt");
 
-	scene.h.push_back(h1);
-	scene.h.push_back(h2);
-	
-	
+	scene.objects.push_back(h1);
+	scene.objects.push_back(h2);
+	scene.objects.push_back(e1);
 
 	h1->setXY(50, 10);
 	h2->setXY(260, 30);
 	e1->setXY(11, 15);
 
-	scene.drawAll();
-	system("pause");
+	while (true) {
 
-	h1->setXY(140, 10);
-	h2->setXY(280, 30);
-	e1->setXY(100, 20);
-	scene.drawAll();
-	system("pause");
+		for (auto obj : scene.objects) {
+			obj->DoAction();
+		}
+
+		scene.drawAll();
+		//system("pause");
+	}
 
 
-	h2->step(Direction::DOWN, 5);
-	scene.drawAll();
-	system("pause");
-	h2->step(Direction::DOWN, 5);
-	scene.drawAll();
-	system("pause");
-	h2->step(Direction::LEFT, 15);
-	scene.drawAll();
-	system("pause");
-	h2->step(Direction::DOWN, 5);
-	scene.drawAll();
-	system("pause");
 
 
 	

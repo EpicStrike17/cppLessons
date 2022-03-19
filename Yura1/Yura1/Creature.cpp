@@ -102,9 +102,3 @@ void Creature::setXY(int x, int y)
 	this->x = x;
 	this->y = y;
 }
-
-
-void Creature::DoAction(){
-	step(Direction::LEFT, 1);
-	cout << "Creature step left"<<endl;
-}

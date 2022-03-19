@@ -15,3 +15,8 @@ bool Npc::findTarget()
 {
 	return false;
 }
+
+void Npc::DoAction() {
+	step(Direction::LEFT, 1);
+	cout << "Creature step left" << endl;
+}

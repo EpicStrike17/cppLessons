@@ -19,16 +19,26 @@ void Hero::setArmor(int ar) {
 }
 
 void Hero::DoAction() {
+
 	char cmd;
-	cin >> cmd;
-	switch (cmd)
-	{
-	case 'w': step(Direction::UP, 1); break;
-	case 'a': step(Direction::LEFT, 1); break;
-	case 's': step(Direction::DOWN, 1); break;
-	case 'd': step(Direction::RIGHT, 1); break;
-	case '1': Kick(); break;
-	default:
-		break;
+	//cin >> cmd;
+
+	if (_kbhit()) {
+		cmd = _getch();
+		switch (cmd)
+		{
+		case 'w': Creature::step(Direction::UP, 3); break;
+		case 'a': Creature::step(Direction::LEFT, 3); break;
+		case 's': Creature::step(Direction::DOWN, 3); break;
+		case 'd': Creature::step(Direction::RIGHT, 3); break;
+		case '1': Kick(); break;
+		default:
+			break;
+		}
 	}
+}
+
+void Hero::step(int speed)
+{
+	Creature::step(curDir, speed);
 }
