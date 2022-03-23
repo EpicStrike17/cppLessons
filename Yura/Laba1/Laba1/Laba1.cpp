@@ -17,6 +17,7 @@ public:
         }
         avgweight = weight;
     }
+
     int getAvgWeight() {
         return avgweight;
     }
@@ -40,10 +41,20 @@ public:
         strcpy(copy, klass);
         return copy;
     }
+
+    void setAge(int newage) {
+        age = newage;
+    }
+    
+    int getAge() {
+        return age;
+    }
+
 private:
     char* name;
     char* klass;
     int avgweight;
+    int age;
 };
 
 Animals::Animals() {
@@ -52,6 +63,7 @@ Animals::Animals() {
     strcpy(name, "unknown");
     strcpy(klass, "unknown");
     avgweight = 0;
+    age = 5;
 }
 
 Animals::Animals(const char* _name, const char* _klass, int _avgweight) {
@@ -60,6 +72,7 @@ Animals::Animals(const char* _name, const char* _klass, int _avgweight) {
     klass = new char[strlen(_klass)+1];
     strcpy(klass, _klass);
     avgweight = _avgweight;
+    age = 5;
 }
 
 Animals::Animals(const Animals& src) {
@@ -68,6 +81,7 @@ Animals::Animals(const Animals& src) {
     klass = new char[strlen(src.klass)+1];
     strcpy(klass, src.klass);
     avgweight = src.avgweight;
+    age = 5;
 };
 
 Animals::~Animals() {
@@ -90,12 +104,21 @@ int main()
     
     cat.setKlass("Koshak");
     cat.setAvgWeigth(50);
+    cat.setAge(17);
     std::cout << " weight of cat = " << cat.getAvgWeight() << std::endl;
     std::cout << " name of cat = " << cat.getName() << std::endl;
     std::cout << " klass of cat = " << cat.getKlass() << std::endl;
 
-
+    typedef int (Animals::* GetIntMetricFn)();
+    GetIntMetricFn getMetric;
     
+    
+    getMetric = &Animals::getAvgWeight;
+    std::cout << "weight of cat throw the pointer function: " << (cat.*getMetric)() << std::endl;
+
+    getMetric = &Animals::getAge;
+    std::cout << "age of cat throw the pointer function: " << (cat.*getMetric)() << std::endl;
+
 }
 
 
