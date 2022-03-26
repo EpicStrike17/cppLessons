@@ -32,6 +32,21 @@ Creature::Creature(std::string path) {
 		else if (parName == "arm") {
 			file >> arm;
 		}
+		else if (parName == "pic") {
+			int n = 0;
+			string picLine = "";
+			file >> n;
+			if (n == 0) {
+				throw("");
+			}
+			pic = new vector<string>;
+			getline(file, picLine);
+			for (int i = 0; i < n; i++) {
+				getline(file, picLine);
+				pic->push_back(picLine);
+			}
+
+		}
 	} while (!file.eof());
 
 	file >> name >> hp >> atk >> arm >> agi;

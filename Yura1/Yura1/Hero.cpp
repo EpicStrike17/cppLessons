@@ -6,11 +6,7 @@ Hero::~Hero() {
 
 Hero::Hero(std::string path) :Creature(path)
 {
-	pic = new vector<string>({ 
-		" 0 ",	//	" ☺ ",
-		" T ",	// "╚╬╝",
-		" LL"	// "╔═╗"
-	});
+
 }
 
 void Hero::setArmor(int ar) {

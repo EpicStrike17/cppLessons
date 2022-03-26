@@ -3,3 +3,7 @@ hp 2000
 arm 100
 agi 100
 atk 50
+pic 3
+  q(O_O)p 
+ \\/|=|\\/ 
+    I I   

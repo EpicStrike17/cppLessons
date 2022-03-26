@@ -70,15 +70,15 @@ int main()
 	system("pause");
 	
 	Creature* h1 = new Hero("player1.txt");
-	Creature* h2 = new Npc("player2.txt");
+	Creature* e2 = new Npc("player2.txt");
 	Creature* e1 = new Npc("Mob1.txt");
 
 	scene.objects.push_back(h1);
-	scene.objects.push_back(h2);
+	scene.objects.push_back(e2);
 	scene.objects.push_back(e1);
 
 	h1->setXY(50, 10);
-	h2->setXY(260, 30);
+	e2->setXY(260, 30);
 	e1->setXY(11, 15);
 
 	while (true) {
