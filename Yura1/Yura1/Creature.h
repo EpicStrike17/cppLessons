@@ -12,8 +12,6 @@ public:
 	float agiChance = 0;
 	int arm = 0;	// 1000 брони = сниж. урона на 75%
 	float armPct = 0;
-	int x = 0;
-	int y = 0;
 	Creature *target;
 
 
@@ -27,8 +25,8 @@ public:
 	void Kick(Creature* enemy);
 	void Stats();
 	void getDamage(int dmg);
-	virtual void DoAction() = 0;
-	void step(Direction dir,int speed);
+	void step(Direction dir, int speed);
+	void step(Drawable* target, int speed);
 	void setXY(int x, int y);
 
 

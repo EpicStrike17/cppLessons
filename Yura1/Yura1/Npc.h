@@ -1,13 +1,16 @@
 #pragma once
 #include "Creature.h"
+
+class Hero;
+
 class Npc : public Creature
 {
 public:
 	Npc();
 	Npc(string path);
-	bool findTarget();
+	Hero* findTarget();
 
 	void DoAction();
-
+	string getType() override;
 };
 

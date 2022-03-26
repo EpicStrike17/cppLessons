@@ -60,9 +60,6 @@ int main()
 
 	setlocale(LC_ALL, "Russian");
 	gameScore = 0;
-	for(int i=0;i<40;i++)
-	cout << "wet";
-
 
 	ScreenController scene;
 	scene.fill('#');
@@ -70,23 +67,20 @@ int main()
 	system("pause");
 	
 	Creature* h1 = new Hero("player1.txt");
-	Creature* e2 = new Npc("player2.txt");
+	Creature* h2 = new Npc("player2.txt");
 	Creature* e1 = new Npc("Mob1.txt");
 
-	scene.objects.push_back(h1);
-	scene.objects.push_back(e2);
-	scene.objects.push_back(e1);
+	scene.addChild(h1);
+	scene.addChild(h2);
+	scene.addChild(e1);
 
 	h1->setXY(50, 10);
-	e2->setXY(260, 30);
+	h2->setXY(260, 30);
 	e1->setXY(11, 15);
 
 	while (true) {
 
-		for (auto obj : scene.objects) {
-			obj->DoAction();
-		}
-
+		scene.DoAction();
 		scene.drawAll();
 		//system("pause");
 	}

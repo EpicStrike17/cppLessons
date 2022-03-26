@@ -38,3 +38,8 @@ void Hero::step(int speed)
 {
 	Creature::step(curDir, speed);
 }
+
+string Hero::getType()
+{
+	return "Hero";
+}

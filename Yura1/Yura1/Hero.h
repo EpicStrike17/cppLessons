@@ -11,6 +11,8 @@ public:
 	void DoAction();
 
 	void step(int speed);
+	string getType() override;
+
 
 	Direction curDir;
 };

@@ -95,21 +95,55 @@ void Creature::step(Direction dir, int speed)
 {
 	switch (dir) {
 		case Direction::UP: 
-			y -= speed; 
+			y -= speed*1.5; 
+			break;
+		case Direction::UPLEFT: 
+			y -= speed;
+			x -= speed;
+			break;
+		case Direction::UPRIGHT: 
+			y -= speed;
+			x += speed;
 			break;
 		case Direction::DOWN: 
-			y += speed; 
+			y += speed*1.5; 
+			break;
+		case Direction::DOWNLEFT:
+			y += speed;
+			x -= speed;
+			break;
+		case Direction::DOWNRIGHT:
+			y += speed;
+			x += speed;
 			break;
 		case Direction::LEFT: 
-			x -= speed; 
+			x -= speed * 1.5;
 			break;
 		case Direction::RIGHT: 
-			x += speed; 
+			x += speed * 1.5;
 			break;
-		default:
-			cout<< "Wrong Direction"<<endl;
 	}
 	
+}
+
+void Creature::step(Drawable* target, int speed)
+{
+	int diffx = target->x - x;
+	int diffy = target->y - y;
+	Direction dir;
+
+	if (diffy < 0 && diffx > 0) dir = Direction::UPRIGHT;
+	else if (diffy < 0 && diffx < 0) dir = Direction::UPLEFT;
+	else if (diffy < 0 && diffx == 0) dir = Direction::UP;
+	
+	else if (diffy > 0 && diffx > 0) dir = Direction::DOWNRIGHT;
+	else if (diffy > 0 && diffx < 0) dir = Direction::DOWNLEFT;
+	else if (diffy > 0 && diffx == 0) dir = Direction::DOWN;
+	 
+	else if (diffy == 0 && diffx > 0) dir = Direction::RIGHT;
+	else if (diffy == 0 && diffx < 0) dir = Direction::LEFT;
+	else if (diffy == 0 && diffx == 0) dir = Direction::NONE;
+	step(dir, speed);
 }
 
 void Creature::setXY(int x, int y)

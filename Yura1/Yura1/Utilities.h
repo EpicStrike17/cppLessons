@@ -1,4 +1,9 @@
 #pragma once
+
+#ifndef _UTILITIES_
+#define _UTILITIES_
+
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -11,9 +16,15 @@ using namespace std;
 
 enum class Direction {
 	UP,
+	UPLEFT,
+	UPRIGHT,
 	DOWN,
+	DOWNLEFT,
+	DOWNRIGHT,
 	LEFT,
 	RIGHT,
-	DEEP
+	NONE
 };
 
+
+#endif // !_UTILITIES_

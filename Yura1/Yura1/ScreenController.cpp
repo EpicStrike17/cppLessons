@@ -1,8 +1,26 @@
 #include "ScreenController.h"
 
+#include "Drawable.h"
+
 ScreenController::ScreenController()
 {
 	_scr.assign(Ysize,"");
+}
+
+
+void ScreenController::addChild(Drawable* elem) {
+	objects.push_back(elem);
+	elem->scene = this;
+}
+
+vector<Drawable*> ScreenController::getObjects(){
+	return objects;
+}
+
+void ScreenController::DoAction() {
+	for (auto obj : objects) {
+		obj->DoAction();
+	}
 }
 
 void ScreenController::draw()
