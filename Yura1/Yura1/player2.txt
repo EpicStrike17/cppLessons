@@ -1,0 +1,9 @@
+name Bonchman
+hp 1000
+atk 100
+agi 400
+arm 85
+pic 3
+  X
+ /Y\
+ lll
