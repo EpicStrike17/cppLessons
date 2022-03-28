@@ -8,7 +8,7 @@
 
 
 Creature* player1;
-Creature* player2; //bruh
+Creature* player2; //bruh,bruh
 Creature* selectedHero;
 int gameScore = 0;
 
