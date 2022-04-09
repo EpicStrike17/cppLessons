@@ -72,3 +72,8 @@ void ScreenController::drawAll()
 	draw();
 
 }
+
+void ScreenController::spawn(Drawable* object) {
+	addChild(object);
+	object->setXY(50, 10);
+}

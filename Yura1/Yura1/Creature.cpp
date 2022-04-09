@@ -87,12 +87,23 @@ void Creature::getDamage(int dmg) {
 	hp -= dmg - dmg * armPct;
 	if (hp <= 0) {
 		cout << name << " died.";
+		//deleting died objects
+		auto objects = scene->getObjects();
+
+		for (auto obj = objects.begin(); obj != objects.end(); ++obj) {
+			if ( (*obj) == this ) {
+				scene->getObjects().erase(obj);
+			}
+		}
 	}
 
 }
 
 void Creature::step(Direction dir, int speed)
 {
+	int oldX = x;
+	int oldY = y;
+
 	switch (dir) {
 		case Direction::UP: 
 			y -= speed*1.5; 
@@ -123,6 +134,29 @@ void Creature::step(Direction dir, int speed)
 			x += speed * 1.5;
 			break;
 	}
+
+	//add collision
+	for (auto obj : scene->getObjects()) {
+		int x1 = x;
+		int y1 = y;
+		int h1 = y1 + pic->size();
+		int w1 = x1 + (*pic)[0].size();
+		if (obj == this) {
+			continue;
+		}
+
+		int x2 = obj->x;
+		int y2 = obj->y;
+		int h2 = y2 + obj->pic->size();
+		int w2 = x2 + (*obj->pic)[0].size();
+
+		if (x1 <= w2 && w1 >= x2) {
+			if (y1 <= h2 && h1 >= y2) {
+				x = oldX;
+				y = oldY;
+			}
+		}
+	}
 	
 }
 
@@ -146,8 +180,3 @@ void Creature::step(Drawable* target, int speed)
 	step(dir, speed);
 }
 
-void Creature::setXY(int x, int y)
-{
-	this->x = x;
-	this->y = y;
-}

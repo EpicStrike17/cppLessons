@@ -13,5 +13,6 @@ public:
 	float getDistance(Drawable* target);
 	virtual void DoAction() = 0;
 	virtual string getType() = 0;
+	void setXY(int x, int y);
 };
 

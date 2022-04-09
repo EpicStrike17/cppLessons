@@ -14,6 +14,7 @@ public:
 	vector<Drawable*> getObjects();
 	void DoAction();
 	void drawAll();
+	void spawn(Drawable* object);
 	int Xsize = 290;
 	int Ysize = 60;
 	vector<string> _scr;

@@ -27,7 +27,7 @@ public:
 	void getDamage(int dmg);
 	void step(Direction dir, int speed);
 	void step(Drawable* target, int speed);
-	void setXY(int x, int y);
+	bool isAlive();
 
 
 
